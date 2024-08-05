@@ -18,7 +18,13 @@ object Interpreter {
   def eval(expr: Expr): Value = expr match {
     case v: Value => v
   }
-
+    def Not(expr: Expr): Value = expr match {
+        case Stun => Sleepy
+        case Sleepy => Stun
+        case Happy => Cry
+        case VeryHappy => Cry
+        case Cry => VeryHappy 
+  }
   // implement the rest 
 }
 
