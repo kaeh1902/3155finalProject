@@ -13,6 +13,18 @@ case object Sleepy extends Value
 case object Stun extends Value 
 case class ManyVals(myValues: List[Value]) extends Value
 
+// Implement the interpreter
+object Interpreter {
+  def eval(expr: Expr): Value = expr match {
+    case v: Value => v
+  }
+
+  // implement the rest 
+}
+
+
+
+
 
 
 
