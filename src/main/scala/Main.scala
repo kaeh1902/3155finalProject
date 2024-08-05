@@ -4,14 +4,14 @@ sealed trait Value extends Expr
 case class ManyExprs(myExprs: List[Expr]) extends Expr 
 case class Plus(e1: Expr, e2: Expr) extends Expr 
 case class Not(e: Expr) extends Expr
+case class Count(e1: Expr, e2: Expr) extends Expr
 
-
-
-
-
-
-
-
+case object Cry extends Value 
+case object Happy extends Value
+case object VeryHappy extends Value 
+case object Sleepy extends Value
+case object Stun extends Value 
+case class ManyVals(myValues: List[Value]) extends Value
 
 
 
