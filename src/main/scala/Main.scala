@@ -26,6 +26,12 @@ object Interpreter {
             case Cry => VeryHappy 
             case _ => ErrorValue
         }
+
+        case ManyExprs(myExprs) => {
+            val evalued = myExprs.map(eval)
+            if (evalued.contains(ErrorValue)) ErrorValue
+            else ManyVals(evalued)
+        }
     }
   // implement the rest 
 }
