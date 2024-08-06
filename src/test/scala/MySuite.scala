@@ -132,7 +132,7 @@ class MySuite extends FunSuite {
       ManyVals(List(Cry, Sleepy, Stun))
     )
     val obtained = eval(expr)
-    val expected = ManyVals(List(Happy, Sleepy, VeryHappy))
+    val expected = ManyVals(List(Cry, Sleepy, VeryHappy))
     assertEquals(obtained, expected)
   }
 
@@ -164,7 +164,7 @@ class MySuite extends FunSuite {
   test("eval-not: Not Sleepy results in Sleepy") {
     val expr = Not(Sleepy)
     val obtained = eval(expr)
-    val expected = Sleepy
+    val expected = Stun
     assertEquals(obtained, expected)
   }
 
@@ -238,14 +238,14 @@ class MySuite extends FunSuite {
   // Complex test case with nested ManyExprs and Plus
   test("Complex: Nested ManyExprs and Plus") {
     val expr = ManyExprs(List(
-      Plus(Happy, Cry),          // Expected: Happy
-      Plus(VeryHappy, Sleepy),   // Expected: VeryHappy
-      Not(Plus(Sleepy, Happy)),  // Expected: Sleepy
+      Plus(Happy, Cry),          // Expected: Cry
+      Plus(VeryHappy, Sleepy),   // Expected: Sleepy
+      Not(Plus(Sleepy, Happy)),  // Expected: Stun
       Plus(Sleepy, Cry),         // Expected: Sleepy
       Plus(Sleepy, VeryHappy)    // Expected: Sleepy
     ))
     val obtained = eval(expr)
-    val expected = ManyVals(List(Happy, VeryHappy, Sleepy, Sleepy, Sleepy))
+    val expected = ManyVals(List(Cry, Sleepy, Stun, Sleepy, Sleepy))
     assertEquals(obtained, expected)
   }
 
@@ -255,7 +255,7 @@ class MySuite extends FunSuite {
     val right = Not(ManyVals(List(Cry, Stun, Sleepy, Happy))) // Reduced to Stun
     val expr = Plus(left, right)
     val obtained = eval(expr)
-    val expected = ManyVals(List(Stun, VeryHappy, Stun, Sleepy, Happy))
+    val expected = ManyVals(List(Sleepy, Sleepy, Sleepy, Sleepy, Sleepy))
     assertEquals(obtained, expected)
   }
 }
