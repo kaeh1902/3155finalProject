@@ -8,7 +8,7 @@ class MySuite extends munit.FunSuite {
   //**TODO: Your tests here
   test("Not tests") {
     val e1 = Stun
-    val obtained = eval(Not(e1))
+    val obtained = Interpreter.eval(Not(e1))
     val expected = Sleepy
     assertEquals(obtained, expected)
   }

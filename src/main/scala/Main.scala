@@ -18,14 +18,14 @@ case class ManyVals(myValues: List[Value]) extends Value
 object Interpreter {
   def eval(expr: Expr): Value = expr match {
         case v: Value => v
-    }
-    def Not(expr: Expr): Value = expr match {
-        case Stun => Sleepy
-        case Sleepy => Stun
-        case Happy => Cry
-        case VeryHappy => Cry
-        case Cry => VeryHappy 
-        case _ => ErrorValue
+        case Not(e): Value => e match {
+            case Stun => Sleepy
+            case Sleepy => Stun
+            case Happy => Cry
+            case VeryHappy => Cry
+            case Cry => VeryHappy 
+            case _ => ErrorValue
+        }
     }
   // implement the rest 
 }
