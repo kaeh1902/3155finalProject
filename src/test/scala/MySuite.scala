@@ -72,7 +72,7 @@ class MySuite extends FunSuite {
     assertEquals(obtained, expected)
   }
 
-  test("eval-plus: Happy plus Cry results in Happy") {
+  test("eval-plus: Happy plus Cry results in Cry") {
     val expr = Plus(Happy, Cry)
     val obtained = eval(expr)
     val expected = Cry
@@ -87,7 +87,7 @@ class MySuite extends FunSuite {
     assertEquals(obtained, expected)
   }
 
-  test("eval-plus: Happy plus Sleepy results in Sleepy") {
+  test("eval-plus: Happy plus Sleepy results in Happy") {
     val expr = Plus(Happy, Sleepy)
     val obtained = eval(expr)
     val expected = Happy
@@ -102,7 +102,7 @@ class MySuite extends FunSuite {
     assertEquals(obtained, expected)
   }
 
-  test("eval-plus: Stun plus Happy results in Happy") {
+  test("eval-plus: Stun plus Happy results in Stun") {
     val expr = Plus(Stun, Happy)
     val obtained = eval(expr)
     val expected = Stun
