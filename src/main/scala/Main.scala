@@ -27,6 +27,45 @@ object Interpreter {
         case Cry => VeryHappy 
         case _ => ErrorValue
     }
+    def Plus(e1: Expr, e2: Expr) : Value = {
+      // evaluate e1 and e2
+      val v1 = eval(e1)
+      val v2 = eval(e2)
+
+      v1 match{
+        /*
+          evaluate every expression/value in v1 as plus(v1,v2)
+          if v1.filter(error) != v1 then return error
+        */
+        case v1: ManyVals => { // implement many vals
+          val new_list = v1.myValues.map(x => Plus(x,v2)) 
+          val filtered_list = new_list.filter{
+            case ErrorValue => false
+            case _ => true
+          } 
+          if (filtered_list.length == new_list.length) then new_list
+          else ErrorValue
+        }
+        case v1: VeryHappy => v1 // eval stay uwu
+        case Cry => v2 // eval move on
+        case Happy => {
+          v2 match{
+            case VeryHappy => v2 // eval become uwu
+            case Cry => v2 // eval hard day
+            case _ => v1 // eval meh
+          }
+        }
+        case Stun =>  {
+          v2 match{
+            case VeryHappy => v2 // eval become uwu
+            case Cry => v2 // eval hard day
+            case _ => v1 // eval meh
+          }
+        }
+        case ErrorValue => ErrorValue // error
+        case _ => v1
+      }
+    }
   // implement the rest 
 }
 
