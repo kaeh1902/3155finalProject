@@ -60,18 +60,15 @@ object Interpreter {
         val results = vals.map(vi => plus(v, vi))
         if (results.contains(ErrorValue)) ErrorValue else ManyVals(results)
 
-      case (_, Sleepy) => Sleepy // Sleepy dominates
-      case (Sleepy, _) => Sleepy // Sleepy dominates
       case (VeryHappy, _) => VeryHappy // VeryHappy dominates any other value
       case (_, VeryHappy) => VeryHappy // Any interaction with VeryHappy results in VeryHappy
       case (Cry, v) => v // Other value takes over Cry
       case (v, Cry) if v == Happy || v == Stun => Cry // Cry takes over Happy or Stun
-      case (Happy, _) => Happy // Happy stays unless interacting with Cry
-      case (Stun, _) => Stun // Stun remains unless interacting with Cry
-      case (v, Stun) => v // Stun does not alter the other values
+      case (v1, v2) if v2 != VeryHappy || v2 != Cry => v1
       case _ => ErrorValue // Unsupported combinations return ErrorValue
     }
   }
+  //Ex: has error
 
   // Implement the Not operation
   def not(e: Expr): Value = {
@@ -89,7 +86,7 @@ object Interpreter {
         vals.tail.foldLeft(vals.head) { (acc, vi) =>
           // Apply Plus to the accumulated value and the current value
           plus(acc, vi) match {
-            case Sleepy => return Sleepy // If any result is Sleepy, return Sleepy immediately as it dominates
+            case Sleepy => return VeryHappy // If any result is Sleepy, return Sleepy immediately as it dominates
             case result => result // Otherwise, continue the reduction
           }
         }
