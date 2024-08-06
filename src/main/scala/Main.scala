@@ -86,7 +86,7 @@ object Interpreter {
         vals.tail.foldLeft(vals.head) { (acc, vi) =>
           // Apply Plus to the accumulated value and the current value
           plus(acc, vi) match {
-            case Sleepy => return VeryHappy // If any result is Sleepy, return Sleepy immediately as it dominates
+            case Sleepy => return VeryHappy // If any result is VerHappy, return VeryHappy immediately as it dominates
             case result => result // Otherwise, continue the reduction
           }
         }
