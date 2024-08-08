@@ -86,8 +86,8 @@ object Interpreter {
         vals.tail.foldLeft(vals.head) { (acc, vi) =>
           // Apply Plus to the accumulated value and the current value
           plus(acc, vi) match {
-            case Sleepy => return VeryHappy // If any result is VerHappy, return VeryHappy immediately as it dominates
-            case result => result // Otherwise, continue the reduction
+            case VeryHappy => return Sleepy // If any result is VerHappy, return VeryHappy immediately as it dominates
+            case result => eval(Not(result)) // Otherwise, continue the reduction
           }
         }
       case _ => ErrorValue // If the value is not recognized, return ErrorValue as a default case
@@ -104,7 +104,7 @@ object Interpreter {
 
     // Apply the Count operation based on the first value
     v1 match {
-      case ManyVals(vals) =>
+      case ManyVals(vals) if v2 != ManyVals(vals) =>
         // If the first value is ManyVals (a list of values),
         // replace each element in the list with the second value (v2)
         ManyVals(vals.map(_ => v2))

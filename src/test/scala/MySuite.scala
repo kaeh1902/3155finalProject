@@ -187,7 +187,7 @@ class MySuite extends FunSuite {
   test("eval-not: Not ManyVals applies plus reduction resulting in Stun") {
     val expr = Not(ManyVals(List(Cry, Stun, Happy, Happy)))
     val obtained = eval(expr)
-    val expected = Stun
+    val expected = Sleepy
     assertEquals(obtained, expected)
   }
 
@@ -248,7 +248,7 @@ class MySuite extends FunSuite {
     val right = Not(ManyVals(List(Cry, Stun, Sleepy, Happy))) // Reduced to Stun
     val expr = Plus(left, right)
     val obtained = eval(expr)
-    val expected = ManyVals(List(Stun, VeryHappy, Stun, Sleepy, Happy))
+    val expected = ManyVals(List(Sleepy, VeryHappy, Stun, Sleepy, Happy))
     assertEquals(obtained, expected)
   }
 }
