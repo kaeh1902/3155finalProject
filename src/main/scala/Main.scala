@@ -64,7 +64,7 @@ object Interpreter {
       case (_, VeryHappy) => VeryHappy // Any interaction with VeryHappy results in VeryHappy
       case (Cry, v) => v // Other value takes over Cry
       case (v, Cry) if v == Happy || v == Stun => Cry // Cry takes over Happy or Stun
-      case (v1, v2) => v1
+      case (v1, v2) if v2 != VeryHappy || v2 != Cry => v1
       case _ => ErrorValue // Unsupported combinations return ErrorValue
     }
   }
