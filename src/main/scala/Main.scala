@@ -95,6 +95,19 @@ object Interpreter {
   }
 
   // Implement the Count operation
+  // def countCorrect(e1: Expr, e2: Expr): Int = {
+  //   val v1 = eval(e1)
+  //   val v2 = eval(e2)
+
+  //   (v1, v2) match {
+  //     case (ManyVals(vals1), ManyVals(vals2)) => 
+  //       val v1Arr = vals1.filterNot(vals2.contains)
+  //       v1Arr.length
+  //     case _ =>
+  //       0
+  //     }
+  //   }
+
   def count(e1: Expr, e2: Expr): Value = {
     // Evaluate the first expression to a value
     val v1 = eval(e1)

@@ -240,7 +240,11 @@ Your task is as follows::
 5. You must identify any potential cases of evaluation that the language designers failed to specify (recommend doing this while working on the above tasks)
 
 ### The following were not identified by the language designers
-* **`_YOUR_SOLUTION_HERE_`**
+1. Missing error value in possible syntax for language. Needed ErrorValue as a return value for several functions.
+2. Missing cases for when e2 is a multiexpression in multiple functions. Needed to find a way to Not(Multi), Count(Multi), etc...
+3. Missing inference rules for e1 count e2 and how to handle e2.
+4. Setting up a short-circuit for VeryHappy evaulation in several functions.
+
 
 
 ## STRETCH: Language Testing
